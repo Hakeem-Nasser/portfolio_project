@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block title %}Contact Me{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 mx-auto">
+        <h2 class="mb-4">Get In Touch</h2>
+        
+        <div class="card shadow">
+            <div class="card-body">
+                <form method="post" action="{% url 'core:contact' %}">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Your Name</label>
+                        <input type="text" class="form-control" id="name" name="name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email Address</label>
+                        <input type="email" class="form-control" id="email" name="email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="message" class="form-label">Message</label>
+                        <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="mt-5">
+            <h3>Connect with Me</h3>
+            <div class="d-flex mt-3">
+        
+                <!-- GitHub -->
+                <a href="https://github.com/Hakeem-Nasser" class="me-3 fs-4 text-dark" target="_blank" title="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+        
+                <!-- LinkedIn -->
+                <a href="https://www.linkedin.com/in/abdul-hakeem-abdul-nasser-b27b801a5/" class="me-3 fs-4 text-dark" target="_blank" title="LinkedIn">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+        
+                <!-- X (Twitter) -->
+                <a href="https://x.com/hakeemnaza?s=21" class="me-3 fs-4 text-dark" target="_blank" title="X (Twitter)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M20.977 3H16.97l-4.033 5.377L8.25 3H2.5l6.4 9.065L2 21h4.013l4.34-5.783L15.75 21h5.75l-6.713-9.313L20.977 3Zm-3.524 2h1.068l-4.77 6.223 5.42 7.577h-1.136l-4.96-6.993L6.56 20h-1.1l4.918-6.562L4.19 5h1.143l4.888 6.9L17.453 5Z"/>
+                    </svg>
+                </a>
+        
+                <!-- Email -->
+                <a href="mailto:abdulnasserabdulhakeem@gmail.com" class="me-3 fs-4 text-dark" title="Email">
+                    <i class="fas fa-envelope"></i>
+                </a>
+        
+                <!-- Phone -->
+                <a href="tel:+233205715813" class="fs-4 text-dark" title="Call">
+                    <i class="fas fa-phone"></i>
+                </a>
+        
+            </div>
+        </div>        
+        </div>        
+        </div>
+    </div>
+</div>
+{% endblock %}

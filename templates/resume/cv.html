@@ -1,0 +1,151 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}My Resume/CV{% endblock %}
+{% block content %}
+<div class="row mb-4">
+    <div class="col-md-8">
+        <h2>Resume / CV</h2>
+        <p class="lead">Professional experience and qualifications</p>
+    </div>
+    <div class="col-md-4 text-md-end">
+        <a href="{% static 'files/cv.pdf' %}" class="btn btn-primary">
+            <i class="fas fa-download me-2"></i>Download CV
+        </a>
+    </div>
+</div>
+
+<!-- Education Section -->
+<div class="card mb-4">
+    <div class="card-header bg-light">
+        <h3 class="mb-0">Education</h3>
+    </div>
+    <div class="card-body">
+        <div class="mb-3">
+            <h4>Bachelor of Science in Computer Engineering</h4>
+            <h6>University of Ghana • 2019 - 2023</h6>
+            <p>Relevant courses: Software Engineering, Data Structures & Algorithms, Database Systems, Computer Networks, Python Programing</p>
+        </div>
+        
+        <!-- You can add more education items here -->
+    </div>
+</div>
+
+<!-- Experience Section -->
+<div class="card mb-4">
+    <div class="card-header bg-light">
+        <h3 class="mb-0">Professional Experience</h3>
+    </div>
+    <div class="card-body">
+        {% if experiences %}
+            {% for experience in experiences %}
+                <div class="mb-4">
+                    <h4>{{ experience.role }}</h4>
+                    <h6>{{ experience.company_name }} • {{ experience.start_date|date:"M Y" }} - 
+                        {% if experience.end_date %}
+                            {{ experience.end_date|date:"M Y" }}
+                        {% else %}
+                            Present
+                        {% endif %}
+                    </h6>
+                    <p>{{ experience.description|linebreaks }}</p>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="mb-4">
+                <h4>Teaching Assistant</h4>
+                <h6>University of Ghana • Oct 2023 - Sep 2024</h6>
+                <p>
+                    - Mentored and taught level 200 and level 400 students python programming for engineers, database systems
+                      and distributed system<br>
+                    - Assisted lecturers in comprehensive research and grading of students<br>
+                    - Organized free extra tutorials for students in python programming and linear circuits<br>
+                </p>
+            </div>
+            
+            <div class="mb-4">
+                <h4>Intern</h4>
+                <h6>Premium Technologies • Jan 2022 - Dec 2022</h6>
+                <p>
+                    - Participated in the installation of Access Points, cabling, and other network equipment <br>
+                    - Contributed to network troubleshooting efforts, optimizing performance for maximum speed <br>
+                    - Offered support to clients encountering Wi-Fi issues, such as slow speeds or connection drops <br>   
+                </p>
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+<!-- Skills Section -->
+<div class="card mb-4">
+    <div class="card-header bg-light">
+        <h3 class="mb-0">Skills</h3>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-4 mb-3">
+                <h5>Programming Languages</h5>
+                <ul>
+                    <li>Python</li>
+                    <li>JavaScript</li>
+                    <li>HTML/CSS</li>
+                    <li>SQL</li>
+                </ul>
+            </div>
+            <div class="col-md-4 mb-3">
+                <h5>Frameworks & Libraries</h5>
+                <ul>
+                    <li>Django</li>
+                    <li>Bootstrap</li>
+                    <li>React (Basics)</li>
+                </ul>
+            </div>
+            <div class="col-md-4 mb-3">
+                <h5>Tools & Technologies</h5>
+                <ul>
+                    <li>Git & Github</li>
+                    <li>PostgreSQL</li>
+                    <li>Canva</li>
+                    <li>Figma</li>
+                    <li>Heroku</li>
+                    <li>AWS (Basics)</li>
+                </ul>
+            </div>
+            <div class="col-md-4 mb-3">
+                <h5>Soft Skills</h5>
+                <ul>
+                    <li>Critical thinking</li>
+                    <li>Team Player</li>
+                    <li>Problem-Solving</li>
+                    <li>Leveraging AI for Efficiency</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Certifications Section -->
+<div class="card mb-4">
+    <div class="card-header bg-light">
+        <h3 class="mb-0">Certifications</h3>
+    </div>
+    <div class="card-body">
+        {% if certifications %}
+            {% for cert in certifications %}
+                <div class="mb-3">
+                    <h5>{{ cert.name }}</h5>
+                    <h6>{{ cert.institution }} • {{ cert.issue_date|date:"F Y" }}
+                        {% if cert.expiration_date %}
+                            - {{ cert.expiration_date|date:"F Y" }}
+                        {% endif %}
+                    </h6>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="mb-3">
+                <h5>Amazon Web Services</h5>
+                <h6>Cloud Practitioner • Jan 2025</h6>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

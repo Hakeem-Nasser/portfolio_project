@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}Blog{% endblock %}
+
+{% block content %}
+<h2 class="mb-4 text-neon">⚙️ Tech Blog</h2>
+<p class="lead mb-5 text-muted">Insights from a Django dev who talks to robots 🤖 (like ChatGPT & Claude).</p>
+
+<div class="row">
+    {% if posts %}
+        {% for post in posts %}
+            <div class="col-md-6 mb-4">
+                <div class="card blog-card text-dark border-0 shadow-lg h-100">
+                    <div class="card-body d-flex flex-column">
+                        <h4 class="card-title text-neon">{{ post.title }}</h4>
+                        <p class="mb-2 small" style="font-family: 'Courier New', monospace; color: #495057;">
+                            🗓 {{ post.created_at|date:"Y-m-d" }} · 👤 {{ post.author.get_full_name|default:post.author.username }}
+                            {% if post.category %}
+                            · <span class="pixel-badge">{{ post.category.name }}</span>
+                            {% endif %}
+                        </p>
+                        <p class="card-text text-dark-50 flex-grow-1">{{ post.content|truncatechars:180 }}</p>
+                    </div>
+                    <div class="card-footer bg-transparent border-top-0">
+                        <a href="{% url 'blog:blog_detail' post.id %}" class="btn btn-sm btn-outline-neon w-100 read-more-btn">Read More →</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <div class="col-12">
+            <div class="alert alert-info text-center">
+                🚧 No blog posts yet. Stay tuned, dev!
+            </div>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .read-more-btn:hover {
+        background-color: #007bff; /* Blue background on hover */
+        color: white; /* White text on hover */
+        border-color: #007bff; /* Blue border on hover */
+    }
+</style>
+{% endblock %}

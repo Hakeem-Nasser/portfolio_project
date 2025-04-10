@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}About Me{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <img src="{% static 'photos/profile.png' %}" alt="Profile Image" class="img-fluid rounded">
+        </div>
+        <div class="col-md-8">
+            <h2>About Me</h2>
+            <p class="lead">I'm a passionate web developer with expertise in Django and modern web technologies.</p>
+            
+            <p>Welcome to my portfolio website! I am a dedicated web developer specializing in building robust and user-friendly web applications. With a strong foundation in Django, Python, and front-end technologies, I create solutions that are both functional and aesthetically pleasing.</p>
+            
+            <p>My journey in web development began during my university years, where I discovered my passion for creating digital experiences. Since then, I've worked on various projects ranging from e-commerce platforms to inventory management systems.</p>
+            
+            <h4 class="mt-4">My Skills</h4>
+            <div class="row">
+                <div class="col-md-6">
+                    <ul>
+                        <li>Python</li>
+                        <li>Django</li>
+                        <li>HTML/CSS</li>
+                        <li>JavaScript</li>
+                        <li>Figma</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <ul>
+                        <li>Bootstrap</li>
+                        <li>SQL</li>
+                        <li>Git</li>
+                        <li>Canva</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <h4 class="mt-4">My Approach</h4>
+            <p>I believe in leveraging AI to create clean, efficient, and maintainable code. User experience is at the heart of my development process, ensuring that every project not only functions well but is also intuitive and accessible to users.</p>
+            
+            <p>When I'm not coding, you can find me exploring new technologies, watching documentaries, and staying up to date with current affairs. I also love football.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

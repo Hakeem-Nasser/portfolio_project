@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}My Portfolio Projects{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">My Projects</h2>
+<p class="lead mb-5">Here are some of the projects I've worked on. Click on any project to learn more.</p>
+
+<div class="row">
+    {% if projects %}
+        {% for project in projects %}
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    {% if project.project_image %}
+                        <img src="{{ project.project_image.url }}" class="card-img-top" alt="{{ project.title }}">
+                    {% else %}
+                        <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Project placeholder">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ project.title }}</h5>
+                        <p class="text-muted">Completed: {{ project.date_completed|date:"F Y" }}</p>
+                        <p class="card-text">{{ project.description|truncatechars:150 }}</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="{% url 'portfolio:portfolio_detail' project.id %}" class="btn btn-primary">View Details</a>
+                        {% if project.project_url %}
+                            <a href="{{ project.project_url }}" class="btn btn-outline-secondary ms-2" target="_blank">Live Demo</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <div class="col-12">
+            <div class="alert alert-info">
+                No projects have been added yet. Check back soon!
+            </div>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

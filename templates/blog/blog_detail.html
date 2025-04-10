@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ post.title }} | Blog{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-10 col-lg-8">
+
+            <!-- Back link -->
+            <div class="mb-4">
+                <a href="{% url 'blog:blog_list' %}" class="btn btn-outline-secondary btn-sm">
+                    <i class="fas fa-arrow-left me-1"></i> Back to All Posts
+                </a>
+            </div>
+
+            <!-- Blog Card -->
+            <div class="card shadow-lg border-0 rounded-4 p-4">
+                <h1 class="card-title mb-3 fw-bold">{{ post.title }}</h1>
+
+                <div class="text-muted mb-3">
+                    <small>
+                        <i class="far fa-calendar-alt me-1"></i> {{ post.created_at|date:"F j, Y" }} |
+                        <i class="far fa-user me-1"></i> {{ post.author.get_full_name|default:post.author.username }}
+                        {% if post.category %}
+                            | <i class="fas fa-folder me-1"></i>
+                            <span class="badge bg-primary">{{ post.category.name }}</span>
+                        {% endif %}
+                    </small>
+                </div>
+
+                <hr class="mb-4">
+
+                <div class="blog-content fs-6 lh-lg">
+                    {{ post.content|linebreaks }}
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}
